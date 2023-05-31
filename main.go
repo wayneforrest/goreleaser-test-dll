@@ -1,4 +1,5 @@
 // go:build (cgo)
+
 package main
 
 import "C"
@@ -18,5 +19,5 @@ func Wrapper(cmd *C.char) *C.char {
 }
 
 func wrapped(cmd string) string {
-	return "hello world"
+	return "hello world : " + cmd
 }
