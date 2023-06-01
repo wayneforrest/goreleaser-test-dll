@@ -1,7 +1,7 @@
 builds:
   - id: windows-amd64
     main: ./
-    binary: cal-lib.dll
+    binary: cal-lib
     goos:
       - windows
     goarch:
@@ -10,13 +10,12 @@ builds:
       - CGO_ENABLED=1
       - CC=x86_64-w64-mingw32-gcc
       - CXX=x86_64-w64-mingw32-g++
-    flags:
-      - -buildmode=c-shared
+    buildmode: c-shared
     ldflags:
       - -s -w -X main.version={{.Version}}
   - id: windows-arm64
     main: ./
-    binary: cal-lib.dll
+    binary: cal-lib
     goos:
       - windows
     goarch:
@@ -25,8 +24,7 @@ builds:
       - CGO_ENABLED=1
       - CC=/llvm-mingw/bin/aarch64-w64-mingw32-gcc
       - CXX=/llvm-mingw/bin/aarch64-w64-mingw32-g++
-    flags:
-      - -buildmode=c-shared
+    buildmode: c-shared
     ldflags:
       - -s -w -X main.version={{.Version}}
 archives:
@@ -38,15 +36,15 @@ archives:
     format: zip
     wrap_in_directory: true
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 snapshot:
   name_template: "{{ .Tag }}"
 changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
+      - "^docs:"
+      - "^test:"
 
 release:
   github:
